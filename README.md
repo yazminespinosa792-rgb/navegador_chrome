@@ -21,13 +21,13 @@ NAVEGADOR/
 ├── requirements.txt
 ├── controllers/
 │   ├── __init__.py
-│   ├── conexion.py             # abre la conexión a sql/navegador.db
-│   ├── utilidades.py           # crea la base de datos si no existe
-│   ├── index.py                # GET  /         -> muestra página actual e historial
-│   ├── visitar_pagina.py       # POST /visitar  -> push: registra una página
-│   ├── regresar_pagina.py      # POST /regresar -> pop: vuelve a la anterior
-│   ├── vaciar_historial.py     # POST /vaciar   -> elimina el historial
-│   └── salir.py                # GET  /salir    -> pantalla de despedida
+│   ├── conexion.py            
+│   ├── utilidades.py           
+│   ├── index.py                
+│   ├── visitar_pagina.py      
+│   ├── regresar_pagina.py     
+│   ├── vaciar_historial.py    
+│   └── salir.py               
 ├── sql/
 │   ├── navegador.db
 │   └── script.sql

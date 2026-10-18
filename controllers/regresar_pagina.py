@@ -16,7 +16,6 @@ def regresar():
             flash("No hay una página anterior a la cual regresar.", "error")
         else:
             actual, anterior = paginas[0], paginas[1]
-            # POP: se quita el tope (LIFO) y la anterior pasa a ser la actual
             conn.execute("DELETE FROM historial WHERE id = ?", (actual["id"],))
             conn.commit()
             flash(f"Regresaste a: {anterior['url']}", "ok")

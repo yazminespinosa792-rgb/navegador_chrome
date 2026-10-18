@@ -8,14 +8,13 @@ bp = Blueprint("index", __name__)
 def index():
     conn = obtener_conexion()
     try:
-        # Historial en orden descendente: del tope de la pila (más reciente) hacia abajo
         historial = conn.execute(
             "SELECT id, url, fecha FROM historial ORDER BY id DESC"
         ).fetchall()
     finally:
         conn.close()
 
-    actual = historial[0] if historial else None   # tope de la pila
+    actual = historial[0] if historial else None  
     vacio = len(historial) == 0
 
     return render_template(

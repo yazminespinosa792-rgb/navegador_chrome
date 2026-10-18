@@ -14,7 +14,6 @@ def visitar():
 
     conn = obtener_conexion()
     try:
-        # PUSH: la nueva página queda en el tope de la pila
         conn.execute("INSERT INTO historial (url) VALUES (?)", (url,))
         conn.commit()
         flash(f"Visitando: {url}", "ok")
