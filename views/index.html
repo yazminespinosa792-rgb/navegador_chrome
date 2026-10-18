@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block contenido %}
+
+<section>
+  <h2>1. Visitar una página web</h2>
+  <form class="inline" method="post" action="{{ url_for('visitar_pagina.visitar') }}">
+    <input name="url" placeholder="https://www.ejemplo.com" required>
+    <button type="submit">Visitar</button>
+  </form>
+</section>
+
+<section>
+  <h2>2. Regresar · 3. Página actual</h2>
+  {% if actual %}
+    <p class="actual">Página actual: <strong>{{ actual.url }}</strong></p>
+  {% else %}
+    <p class="muted">No hay ninguna página abierta.</p>
+  {% endif %}
+  <div class="acciones">
+    <form method="post" action="{{ url_for('regresar_pagina.regresar') }}">
+      <button type="submit">← Regresar a la página anterior</button>
+    </form>
+  </div>
+</section>
+
+<section>
+  <h2>4. Historial (de la más reciente a la más antigua)</h2>
+  <table>
+    <tr><th>#</th><th>Página</th><th>Visitada</th></tr>
+    {% for p in historial %}
+    <tr {% if loop.first %}class="tope"{% endif %}>
+      <td>{{ p.id }}</td>
+      <td>{{ p.url }}{% if loop.first %} (actual){% endif %}</td>
+      <td>{{ p.fecha }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="3" class="muted">El historial está vacío.</td></tr>
+    {% endfor %}
+  </table>
+</section>
+
+<section>
+  <h2>5. Estado del historial</h2>
+  {% if vacio %}
+    <p>El historial está <strong>vacío</strong>.</p>
+  {% else %}
+    <p>El historial tiene <strong>{{ total }}</strong> página(s).</p>
+  {% endif %}
+  <div class="acciones">
+    <form method="post" action="{{ url_for('vaciar_historial.vaciar') }}"
+          onsubmit="return confirm('¿Eliminar todo el historial?');">
+      <button type="submit" {% if vacio %}disabled{% endif %}>Eliminar historial</button>
+    </form>
+    <form method="get" action="{{ url_for('salir.salir') }}">
+      <button type="submit">6. Salir</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

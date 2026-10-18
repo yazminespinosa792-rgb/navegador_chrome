@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block contenido %}
+<section>
+  <h2>Hasta pronto</h2>
+  <p>Cerraste el navegador. Tu historial sigue guardado en la base de datos.</p>
+  <p><a href="{{ url_for('index.index') }}">Volver a abrir el navegador</a></p>
+</section>
+{% endblock %}

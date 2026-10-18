@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Navegador web{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    h1 { margin-bottom: .25rem; }
+    section { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    form.inline { display: flex; gap: .5rem; }
+    form.inline input { flex: 1; }
+    input, button { padding: .5rem .8rem; font-size: 1rem; }
+    button { cursor: pointer; }
+    .acciones { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .acciones form { margin: 0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: .4rem; border-bottom: 1px solid #eee; }
+    tr.tope td { font-weight: 600; background: #f3f8ff; }
+    .flash { padding: .6rem 1rem; border-radius: 6px; margin: .5rem 0; }
+    .flash.ok { background: #e6f6ea; }
+    .flash.error { background: #fdeaea; }
+    .actual { font-size: 1.15rem; }
+    .muted { color: #777; }
+  </style>
+</head>
+<body>
+  <h1>Simulador de navegador web</h1>
+  {% with mensajes = get_flashed_messages(with_categories=true) %}
+    {% for categoria, texto in mensajes %}
+      <div class="flash {{ categoria }}">{{ texto }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block contenido %}{% endblock %}
+</body>
+</html>
