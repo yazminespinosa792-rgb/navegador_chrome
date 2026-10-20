@@ -73,7 +73,7 @@ Necesita Python 3 instalado. Desde la carpeta del proyecto:
 
 ```bash
 python3 -m venv venv
-source venv/bin/activate        # en Windows: venv\Scripts\activate
+source venv/bin/activate        
 pip install -r requirements.txt
 python3 app.py
 ```
